@@ -140,7 +140,7 @@ Promenade essaie d’avoir des points équidistants
 - **Paver des rues en utilisant le moins de pavés possible :[ACM]** Utiliser des arbres couvrants minimum (ACM) :
 	- Algorithme de Krustal 
 	- Algorithme de Prim
-- **Trouver le plus court chemin :** Dijkstra
+- **Trouver le plus court chemin :** Dijkstra / Belman ford / A+ ???
 - **Visiter toutes les villes sans jamais repasser par une ville  (bandits)** : Hamiltoniens #Sommets
 - **Groudronner les rues en passant et une une seule fois par rues, en autorisant les croisements :** Eulériens #Arrêtes
 
