@@ -82,7 +82,7 @@ Promenade essaie d’avoir des points équidistants
 - Nécessité d'un graphe non orienté connexe et pondéré.
 - Sous ensemble qui est un arbre et qui connecte tous les sommets ensemble, dont la somme des poids des arrêtes est minimale.
 - Algorithme de Krustal & Algorithme de Prim (classique) : Tous deux des algo "glouton" càd qu'ils cherchent localement à chaque fois la meilleure solution. C'est parfois trop grand.
-- Algorithme Trajan (1983 - USA) : 
+- Algorithme Tarjan (1983 - USA) : 
 	- Colier en bleu des coupes et choisir le poid minimum ==> Donnera l'arbre couvrant minimum
 	- Cololier en rouge des cycles et prendre le poid maximum
 - Algorithme Kruskal  (1956 - USA) :
