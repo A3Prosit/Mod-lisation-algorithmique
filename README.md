@@ -126,7 +126,7 @@ Promenade essaie d’avoir des points équidistants
 ### Autres notions :
 -  **degrés :** Le degré (ou valence) est le nombre de liens (arrêts) reliés à ce sommet, avec les boucles, comptés deux fois.
 
-- **densité :** Paramètre associé à un graphe pour dire si le graphe à beaucoup d'arrêtes. C'est le rapport entre le nombre d'arêtes et le nombre d'arêtes possibles. C'est donc un réeel compris entre 0 et 1.
+- **densité :** Paramètre associé à un graphe pour dire si le graphe à beaucoup d'arrêtes. C'est le rapport entre le nombre d'arêtes et le nombre d'arêtes possibles. C'est donc un réeel compris entre 0 et 1. Selon la densité,si elevé : on passera par une matrice (beaucoup d'arrêtes), sinon on pourra faire une liste.
 
 - **Matrice adjacente** : C'est une matrice de dimension (= nombre de sommets), et où pour chaque ligne correspond à un sommet. On va indiquer pour chacune des colonnes (les autres sommets), si il existe une liaison avec notre ligne.
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/6n-graph2.svg/220px-6n-graph2.svg.png)![](https://wikimedia.org/api/rest_v1/media/math/render/svg/1a801c1edd8efe61bcadfcb174cf8d9a487dd00a)⇒ Basé sur ça, on peut faire plusieurs calculs comme trouver le nombre de chaîne possbile de longueur n reliant deux points d'un graphe...
