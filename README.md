@@ -72,7 +72,9 @@ Promenade essaie d’avoir des points équidistants
 	- Théorème Ore
 	- Théorème Posa
 	- Bondy et Chvatal
-
+1 - Calculer l'ordre
+2 - Calculer les valeurs des degrés des paires de sommets qui ne sont pas reliés par une arrête directement
+3 - Si un couple < ordre : Pas hamiltonien sinon Hamiltonien
 
 ## Arbre couvrant minimum
 
