@@ -79,8 +79,12 @@ Promenade essaie d’avoir des points équidistants
 - Utilisé dans plusieurs types de réseaux (téléphoniques / distributions / partitionnement de données / traitement d'image).
 - Nécessité d'un graphe non orienté connexe et pondéré.
 - Sous ensemble qui est un arbre et qui connecte tous les sommets ensemble, dont la somme des poids des arrêtes est minimale.
-- Algorithme de Krustal & Algorithme de Prim : Tous deux des algo "glouton" càd qu'ils cherchent localement à chaque fois la meilleure solution. C'est parfois trop grand.
-
+- Algorithme de Krustal & Algorithme de Prim (classique) : Tous deux des algo "glouton" càd qu'ils cherchent localement à chaque fois la meilleure solution. C'est parfois trop grand.
+- Algorithme Trajan (1983 - USA) : 
+	- Colier en bleu des coupes et choisir le poid minimum ==> Donnera l'arbre couvrant minimum
+	- Cololier en rouge des cycles et prendre le poid maximum
+- Algorithme Kruskal  (1956 - USA) :
+	- Parcours les poids de manière croissante. Il ne doit pas faire de cycle.
 ## Rappels de la théorie des graphes
 
 ### Notions de base :
@@ -142,4 +146,173 @@ Promenade essaie d’avoir des points équidistants
 
 
 
+```
+  
+######################################################LISTE####################################################  
+  
+HeadZoneA = [1,3,5,7,11,15,17,19,23,25,27,29]; # Header  
+SuccZoneA = [2,4,1,5,4,8,1,3,5,9,2,4,6,8,5,11,8,10,3,7,5,9,4,8,7,11,6,10]; # Sucesseurs  
+# n'oubliez pas de cliquer sur "Exécuter pour que ces deux listes soient exploitables pour la suite du Workshop  
+  
+  
+def degreSommetsGraphe(Head, Succ):  
+    sommet = 1  
+  indiceParcours = 0  
+  while (sommet < len(Head)):  
+        indiceEnCours = Head[sommet - 1]  
+        indiceSuivant = Head[sommet]  
+  
+        # calcul du degré et création du message à afficher  
+  degre = indiceSuivant - indiceEnCours;  
+  
+        message = "Le sommet " + str(sommet) + " est de degré " + str(degre) + " ( voisins : "  
+  
+  # ajout de la liste des voisins dans le message  
+  
+  print(message)  
+        indiceMax = 0  
+  for i in Succ: ## Pour tous les élements de Succ  
+  indiceMax = indiceMax + 1  
+  if indiceMax > degre:  
+                break  
+ else:  
+                print(Succ[indiceParcours])  
+                indiceParcours = indiceParcours + 1  
+  sommet = sommet + 1  
+  return;  
+  
+  
+print("### Degré des sommets du graphe de la Zone A ###")  
+degreSommetsGraphe(HeadZoneA, SuccZoneA)  
+  
+Head7Ponts = [1,4,9,12,15]; # Header  
+Succ7Ponts = [2,2,3,1,1,3,4,4,1,2,4,2,2,3]; # Sucesseurs  
+print("### Degré des sommets du graphe des 7 ponts de Könisgberg ###")  
+degreSommetsGraphe(Head7Ponts, Succ7Ponts)
 
+
+
+matrixZoneA = [  
+#### 1 2 3 4 5 6 7 8 9 10 11  
+  [0,1,0,1,0,0,0,0,0,0,0],#1  
+  [1,0,0,0,1,0,0,0,0,0,0],#2  
+  [0,0,0,1,0,0,0,1,0,0,0],#3  
+  [1,0,1,0,1,0,0,0,1,0,0],#4  
+  [0,1,0,1,0,1,0,1,0,0,0],#5  
+  [0,0,0,0,1,0,0,0,0,0,1],#6  
+  [0,0,0,0,0,0,0,1,0,1,0],#7  
+  [0,0,1,0,1,0,1,0,1,0,0],#8  
+  [0,0,0,1,0,0,0,1,0,0,0],#9  
+  [0,0,0,0,0,0,1,0,0,0,1],#10  
+  [0,0,0,0,0,1,0,0,0,1,0]#11  
+]  
+  
+  
+  
+  
+def degreSommetsGrapheMatrice(matrice):  
+    sommet = 1  
+  indiceVoisins = 0  
+  for liste in matrice:  
+        cpt = 0  
+  voisins = []  
+        degre = 0  
+  
+  for i in liste:  
+            if i == 1:  
+                voisins.insert(indiceVoisins,cpt+1)  
+                degre = degre+1  
+  indiceVoisins = indiceVoisins + 1  
+  elif i > 1 :  
+                y = 0  
+  for y in range(0,i):  
+                    voisins.insert(indiceVoisins, cpt + 1)  
+                    degre = degre + 1  
+  indiceVoisins = indiceVoisins + 1  
+  cpt = cpt+1  
+  
+  message = "Le sommet " + str(sommet) + " est de degré " + str(degre) + " ( voisins : "  
+  for voisin in voisins:  
+            message = message + str(voisin) + " "  
+  message = message + ")"  
+  print(message)  
+  
+        sommet = sommet + 1  
+  return;  
+  
+  
+print("### Degré des sommets du graphe de la Zone A ###")  
+degreSommetsGrapheMatrice(matrixZoneA)  
+  
+  
+  
+matrix7Ponts = [  
+#    1 2 3 4  
+  [0,2,1,0],#1  
+  [2,0,1,2],#2  
+  [1,1,0,1],#3  
+  [0,2,1,0] #4  
+]  
+  
+print("### Degré des sommets du graphe des 7 ponts de Könisgberg ###")  
+degreSommetsGrapheMatrice(matrix7Ponts)  
+  
+  
+  
+def existeCycleEulerien(matrice):  
+    for sommet in matrice:  
+        total = 0  
+  for i in sommet:  
+            if i == 1:  
+                total = total +1  
+  elif i > 1:  
+                y = 0  
+  for y in range(0,i):  
+                    total = total + y  
+        if (total%2 != 0): return False;  
+    return True;  
+  
+print("### Il existe un cycle Eulérien dans le graphe de la Zone A ? ###")  
+print(existeCycleEulerien(matrixZoneA));  
+  
+print("### Il existe un cycle Eulérien dans le graphe des 7 ponts de Könisgberg ? ###")  
+print(existeCycleEulerien(matrix7Ponts))  
+  
+  
+def cycleEulerien(matrice):  
+    n = len(matrice)  
+  
+    cycle = list()  # cycle est notre cycle à construire  
+  stack = list()  # stack est une liste de sommets à traiter  
+  cur = 0 # cur est notre sommet courant : le 1er noeud traité est le premier noeud de la matrice  
+  
+ # on boucle tant qu'il y a des sommets à traiter dans notre stack # ou que notre sommet courant possède bien au moins 1 voisin non traité  while (stack != [] or sum(matrice[cur]) != 0):  
+  
+        # si le sommet courant ne possède aucun voisin  
+ # on l'ajoute à notre cycle et on revient au sommet ajouté précédemment dans la stack (backtracking) # qui devient notre nouveau sommet courant  if (sum(matrice[cur]) == 0):  
+            cycle.append(cur + 1)  
+            cur = stack.pop(-1)  
+  
+        # si il a au moins 1 voisin  
+ # on l'ajoute à notre stack pour y revenir plus tard (backtracking) # on retire l'arête qu'il partage avec ce voisin # qui devient le sommet courant  else:  
+            for i in range(n):  
+                if matrice[cur][i] == 1:  
+                    stack.append(cur)  
+                    matrice[cur][i] = 0  
+  matrice[i][cur] = 0  
+  cur = i  
+                    break  
+  
+  # affichage du cycle  
+  for ele in cycle:  
+        print(ele, "-> ", end='')  
+    print(cur + 1)  
+  
+    return;  
+  
+  
+print("### Calcul d'un cycle Eulérien du graphe de la Zone A ###")  
+cycleEulerien(matrixZoneA)
+
+
+```
